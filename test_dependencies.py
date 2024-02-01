@@ -1,9 +1,9 @@
 errors = []
 
-try:
-    import mysql
-except ModuleNotFoundError as e:
-    errors.append(str(e))
+#try:
+#    import mysql
+#except ModuleNotFoundError as e:
+#    errors.append(str(e))
 
 try:
     import bs4
