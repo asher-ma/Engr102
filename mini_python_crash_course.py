@@ -311,11 +311,11 @@ def module_5_logic():
     # example: x == y or z != w
 
     5*6 == 30 or 5*7 == 35 # this would be True, because both are True
-<<<<<<< HEAD
+
     5*8 == 40 or 5*9 == 46 # this would be True, because one is True
-=======
+
     5*8 == 40 or 5*9 == 46 # this would be True, because one is True and one is False
->>>>>>> 99cdceb0938790b910c6134eb2f4760cd168f06b
+
     5*10 == 49 or 5*11 == 54 # this would be False, because both are False
 
     # not: inverts the result of any logical or comparison operators
