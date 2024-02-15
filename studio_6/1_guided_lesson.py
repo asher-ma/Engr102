@@ -25,7 +25,7 @@ student_3_expected_graduation_year = "2027"
 # Discussion: What are some problems with this approach?
 
     # Lots of writing for each entry
-
+    # Many lines used for each entry
 
 
 
@@ -36,20 +36,32 @@ student_3_expected_graduation_year = "2027"
 class Student:
     # TODO: Let's build this class!
     def __init__(self, id, first_name, last_name, major, graduation_year):
-        self.id = id
+        self.__id = id
         self.first_name = first_name
         self.last_name = last_name
         self.major = major
         self.graduation_year = graduation_year
+
+    @property
+    def id(self):
+        return self.__id
+    
+    def get_full_name(self):
+
+        # return a string that is the first and last name with a space in the middle
+
+        return self.first_name + " " + self.last_name
+    
+    def get_last_four(self):
+
+        return int(str(self.__id)[-4:])
 
 
 
 # TODO: Let's recreate our 3 students as objects of our new class!
 
 student_1 = Student(18584831, "Daniel", "White", "Computer Science", "2026")
-
 student_2 = Student(18582185, "Jennie", "Kim", "Chemistry", "2025")
-
 student_3 = Student(934544028, "Asher", "Mangel", "Computer Science", "2027")
 
 
@@ -58,8 +70,8 @@ student_3 = Student(934544028, "Asher", "Mangel", "Computer Science", "2027")
     
 # TODO: Make the id private.
 # Test your code and ensure you cannot access student_1.__id (you should see an error)
-    
 
+    # print(student_1.__id)
 
 
 # This is good because it prevents users from modifying the id by accident.
@@ -67,15 +79,16 @@ student_3 = Student(934544028, "Asher", "Mangel", "Computer Science", "2027")
     
 # TODO: Add an @property getter for id
 # Test to make sure you can get the id with student_1.id
-    
 
 
 # What if we want a way to just get the last four of the id instead of the whole thing? We can build a custom class method to do this.
     
 # Create a method in the class called get_last_four
 # This should return the last four numbers of the id.
-    
 
+print(student_3.get_full_name())
+
+print(student_3.get_last_four())
 
 # OOP Property - Inheritence:
 # A class can inherit from another class.
@@ -84,10 +97,20 @@ student_3 = Student(934544028, "Asher", "Mangel", "Computer Science", "2027")
     
 # TODO: Create a child class called GradStudent which inherits from the Student class, with the additional property of "specialization"
 
+class GradStudent(Student):
+    def __init__(self, id, first_name, last_name, major, graduation_year, specialization):
+        super().__init__(id, first_name, last_name, major, graduation_year)
+        self.specialization = specialization
+
+    def print_degree_title(self):
+        print("Master of " + self.major + " with a specialization in " + self.specialization)
 
 # create a new student_4 which uses GradStudent instead.
 # this person's major is Computer Science and their Specialization is Artifical Intelligence
-    
+
+student_4 = GradStudent(133858585, "Bob", "Smith", "Computer Science", "2024", "Artificial Intelligence")
+
+print("hello")
 
 # OOP Property - Polymorphism
 # refers to methods/functions/operators with the same name that can be executed on many objects or classes.
@@ -104,6 +127,8 @@ student_3 = Student(934544028, "Asher", "Mangel", "Computer Science", "2027")
     
 # TODO: Add the print_degree_title to the Graduate class, have it print "Master of {major} with a specialization in {specialization}."
     
+student_4.print_degree_title()
+
 # Test your code and make sure print_degree_title prints the master's student as intended.
     
 # This is the end of the OOP lesson. Look at part_2.py for the follow up to this lesson. 
