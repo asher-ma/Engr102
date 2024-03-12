@@ -25,7 +25,7 @@ def main():
 
     quotes = []
     while True:
-        time.sleep(0.5)
+        time.sleep(1)
         relative_url = get_next_url(soup)
         if relative_url is None:
             break
@@ -60,10 +60,14 @@ def get_top_authors(quotes):
     #sort tags list by repetitions value
     sorted_authors = sorted(authors_classes, key = lambda x: x.repetitions, reverse=True)
 
+    thinned_sorted_authors = []
     for author in sorted_authors:
-        print(author.author)
-        print(author.repetitions)
+        if thinned_sorted_authors.count(author.author) == 0:
+            thinned_sorted_authors.append(author.author)
+            thinned_sorted_authors.append(author.repetitions)
     
+    print(thinned_sorted_authors)
+
     return
 
     
@@ -85,18 +89,22 @@ def get_top_tags(quotes):
         repetitions = individual_tags.count(tag)
         current_tag = Tag(tag, repetitions)
         #only add tag to list if it isnt already in (this obviously didnt work)
-        if tags.count(current_tag.tag) == 0:
+        if tags.count(current_tag) == 0:
             tags.append(current_tag)
 
     #sort tags list by repetitions value
     sorted_tags = sorted(tags, key = lambda x: x.repetitions, reverse=True)
 
+    thinned_sorted_tags = []
+    for tag in sorted_tags:
+        if thinned_sorted_tags.count(tag.tag) == 0:
+            thinned_sorted_tags.append(tag.tag)
+            thinned_sorted_tags.append(tag.repetitions)
+
     top_10_tags = []
     # add first 10 items to final list
-    for tag in sorted_tags[:10]:
-        top_10_tags.append(tag.tag)
-        top_10_tags.append(tag.repetitions)
-        # + ": " + tag.repetitions + " times"
+    for item in thinned_sorted_tags[:20]:
+        top_10_tags.append(item)
 
     print(top_10_tags)
     
