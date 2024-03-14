@@ -53,8 +53,7 @@ def get_top_authors(quotes):
     for author in authors:
         repetitions = authors.count(author)
         current_author = Author(author, repetitions)
-        #only add author to list if it isnt already in (this obviously didnt work)
-        if (authors.count(current_author) == 0) & (current_author.repetitions >= 2):
+        if (current_author.repetitions >= 2):
             authors_classes.append(current_author)
 
     #sort tags list by repetitions value
@@ -88,9 +87,7 @@ def get_top_tags(quotes):
     for tag in individual_tags:
         repetitions = individual_tags.count(tag)
         current_tag = Tag(tag, repetitions)
-        #only add tag to list if it isnt already in (this obviously didnt work)
-        if tags.count(current_tag) == 0:
-            tags.append(current_tag)
+        tags.append(current_tag)
 
     #sort tags list by repetitions value
     sorted_tags = sorted(tags, key = lambda x: x.repetitions, reverse=True)
